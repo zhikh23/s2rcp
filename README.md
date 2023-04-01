@@ -12,9 +12,9 @@ This package includes modules:
 
 ## Installation
 
-Install from pip
+Install from [pip](https://test.pypi.org/project/s2rcp/)
 ```sh
-pip install s2rcp
+pip install -i https://test.pypi.org/simple/ s2rcp
 ```
 
 ## Code example from the robot side
