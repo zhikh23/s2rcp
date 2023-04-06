@@ -49,7 +49,7 @@ class RemoteController:
             )
 
         speed = abs(int(speed * StartCommand.MAX_SPEED))
-        inverted = speed < 0.0
+        inverted = int(speed < 0.0)
         
         return StartCommand(motor_id, speed, inverted)
 
