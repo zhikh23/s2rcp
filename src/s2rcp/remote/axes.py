@@ -26,5 +26,5 @@ class AxesConfig:
     def get_all_motors(self):
         all_motors = list()
         for axis_name in self._axes:
-            all_motors.extend(self._axes[axis_name].values())
+            all_motors.extend(self._axes[axis_name].keys())
         return all_motors
