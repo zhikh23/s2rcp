@@ -5,7 +5,7 @@ with open("README.md") as file:
 
 setuptools.setup(
     name="s2rcp",
-    version="0.2.4",
+    version="0.2.5",
     author="zhikh",
     author_email="zhikh.k@gmail.com",
     description="Simple Remote Robot Control Protocol",

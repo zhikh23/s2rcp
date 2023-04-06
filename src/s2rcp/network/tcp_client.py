@@ -13,14 +13,12 @@ class TcpClient(BaseClient):
     def connect(self, server_address):
         if self._runned:
             raise Exception("TcpClient already runned")
-        self._runned = True 
         self._socket.connect(server_address)
         self._start_loop()
 
     def listen(self, address):
         if self._runned:
             raise Exception("TcpClient already runned")
-        self._runned = True 
         self._socket.bind(address)
         self._socket, _ = self._socket.accept()
         self._start_loop()
@@ -46,6 +44,7 @@ class TcpClient(BaseClient):
                 target = self._loop,
                 daemon = True
         ).start()
+        self._runned = True
         self._call_handlers(ClientEvent.START)
 
     def _loop(self):
@@ -53,7 +52,7 @@ class TcpClient(BaseClient):
         Listens for a connection to the server. When receiving a message 
         from it, calls handlers subscribed to ON_MESSAGE
         """
-        while not self._runned:
+        while self._runned:
             data = self._socket.recv(128)
             # If the data is empty, it's a disconnect signal
             if not data:
