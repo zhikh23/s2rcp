@@ -11,8 +11,8 @@ def register_command_type(command_type, command_type_id):
             "command with id={id_} has already been registered"
             .format(id_=command_type_id)
         )
-    _map_command_to_id[command_type_id] = command_type
-    _map_id_to_command[command_type] = command_type_id
+    _map_command_to_id[command_type] = command_type_id
+    _map_id_to_command[command_type_id] = command_type
 
 
 def get_command_type_id(command_type):
