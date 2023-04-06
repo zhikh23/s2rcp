@@ -1,7 +1,9 @@
 from s2rcp.core.exceptions import S2rcpEncodeError
 
 from .command import Command, CommandEncoder, CommandDecoder
-from .all_commands import get_command_type_id
+from .all_commands import (
+    get_command_type_id, register_command_type
+)
 
 
 class StopCommand(Command):
@@ -36,4 +38,7 @@ class StopCommandDecoder(CommandDecoder):
         return StopCommand(
             motor_id = data[0] >> 2
         )
+
+
+register_command_type(StopCommand, 0b10)
 

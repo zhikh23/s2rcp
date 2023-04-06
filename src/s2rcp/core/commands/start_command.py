@@ -2,7 +2,9 @@ from s2rcp.core.utils import check_int_value_is_valid
 from s2rcp.core.exceptions import S2rcpEncodeError
 
 from .command import Command, CommandEncoder, CommandDecoder
-from .all_commands import get_command_type_id
+from .all_commands import (
+    get_command_type_id, register_command_type
+)
 
 
 class StartCommand(Command):
@@ -48,4 +50,7 @@ class StartCommandDecoder(CommandDecoder):
             speed    = data[1] & 0x7F,
             inverted = bool(data[1] >> 7)
         )
+
+
+register_command_type(StartCommand, 0b01)
 

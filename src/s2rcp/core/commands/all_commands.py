@@ -1,16 +1,18 @@
-from .start_command import StartCommand
-from .stop_command import StopCommand
- 
-
-_map_command_to_id = {
-    StartCommand: 0b01,
-    StopCommand:  0b10,
-}
+from s2rcp.core.exceptions import S2rcpException
 
 
-_map_id_to_command = {
-    id_: command for command, id_ in _map_command_to_id.items() 
-}
+_map_command_to_id = dict()
+_map_id_to_command = dict()
+
+
+def register_command_type(command_type, command_type_id):
+    if command_type_id in _map_id_to_command:
+        raise S2rcpException(
+            "command with id={id_} has already been registered"
+            .format(id_=command_type_id)
+        )
+    _map_command_to_id[command_type_id] = command_type
+    _map_id_to_command[command_type] = command_type_id
 
 
 def get_command_type_id(command_type):
