@@ -6,6 +6,7 @@ from .client import BaseClient, ClientEvent
 
 class TcpClient(BaseClient):
     def __init__(self):
+        super().__init__()
         self._runned = False
         self._socket = socket(AF_INET, SOCK_STREAM)
 

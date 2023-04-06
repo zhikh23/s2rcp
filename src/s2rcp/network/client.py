@@ -36,3 +36,4 @@ class BaseClient(metaclass=ABCMeta):
 
         for handler in self.__handlers[event_type]:
             Thread(target=handler, args=args, daemon=True).start() 
+
