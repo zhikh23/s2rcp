@@ -39,12 +39,12 @@ class TcpClient(BaseClient):
             pass
 
     def _start_loop(self):
+        self._runned = True
         Thread(
                 name = "LISTEN_LOOP",
                 target = self._loop,
                 daemon = True
         ).start()
-        self._runned = True
         self._call_handlers(ClientEvent.START)
 
     def _loop(self):
