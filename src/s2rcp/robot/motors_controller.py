@@ -21,7 +21,7 @@ class MotorsController:
         self._max_latency = None
 
     def set_motor(self, id, motor):
-        assert issubclass(motor, BaseMotor)
+        assert issubclass(type(motor), BaseMotor)
         self._motors[id] = motor
 
     def start(self):
