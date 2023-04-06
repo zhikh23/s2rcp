@@ -16,7 +16,7 @@ class TcpClient(BaseClient):
         self._socket.connect(server_address)
         self._start_loop()
 
-    def listen(self, address: tuple[str, int]):
+    def listen(self, address):
         if self._runned:
             raise Exception("TcpClient already runned")
         self._runned = True 

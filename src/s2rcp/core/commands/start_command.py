@@ -15,7 +15,7 @@ class StartCommand(Command):
         check_int_value_is_valid(inverted, min=0, max=1)
         self.inverted = inverted
 
-    def __str__(self) -> str:
+    def __str__(self):
         return super().__str__() + " speed={sp}; inverted={inv};"\
                                     .format(sp=self.speed, inv=self.inverted)
 
