@@ -1,15 +1,6 @@
 from s2rcp.core.exceptions import S2rcpDecodeError
 from s2rcp.core.container import Container
-from s2rcp.core.commands import (
-    StartCommand,
-    StopCommand,
-    COMMANDS_TYPES
-)
-
-
-LAST_2_BITS = 0x3
-LAST_4_BITS = 0xF
-LAST_7_BITS = 0x7F
+from s2rcp.core.commands import get_command_by_id
 
 
 def decode(data):
@@ -19,52 +10,20 @@ def decode(data):
      - Container object
      - Number of bytes processed
     """
-
-    # =============== HEADER =================
-
-    # Time
-    #   | # # # # # # # # | # # # # _ _ _ _ |
     time = (data[0] << 4) + (data[1] >> 4)
-
-    # Commands num
-    #   | _ _ _ _ _ _ _ _ | _ _ _ _ # # # # |
-    commands_num = data[1] & LAST_4_BITS
+    commands_num = data[1] & 0xF 
     processed = commands_num * 2 + 2
-
-    # ================= BODY ==================
     commands = list()
     for i in range(2, processed, 2):
-
-        # Motor id
-        #   | # # # # # # _ _ | _ _ _ _ _ _ _ _ |
-        motor_id = data[i] >> 2
-
-        # Command type
-        #   | _ _ _ _ _ _ # # | _ _ _ _ _ _ _ _ |
-        command_type = data[i] & LAST_2_BITS
-
-        if command_type == COMMANDS_TYPES[StartCommand]:
-
-            # Inverted
-            #   | _ _ _ _ _ _ _ _ | #  _ _ _ _ _ _ _ |
-            inverted = data[i+1] >> 7
-
-            # Speed
-            #   | _ _ _ _ _ _ _ _ | _ # # # # # # # |
-            speed = data[i+1] & LAST_7_BITS
-
-            command = StartCommand(motor_id, speed, inverted)
-
-        elif command_type == COMMANDS_TYPES[StopCommand]:
-            command = StopCommand(motor_id)
-
-        else:
+        command_type = data[i] & 0x2
+        command_class = get_command_by_id(command_type)
+        if not command_class:
             raise S2rcpDecodeError(
-                "unknow command type: {type}"
-                .format(type=bin(command_type))
+                "unknown command type: {t}"
+                .format(t=bin(command_type))
             )
-
+        command_decoder = command_class.get_decoder()
+        command = command_decoder.decode(data[i:i+2])
         commands.append(command)
-
     container = Container(time, commands)
     return container, processed

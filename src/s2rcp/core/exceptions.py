@@ -1,6 +1,10 @@
-class S2rcpDecodeError(Exception):
+class S2rcpException(Exception):
     pass
 
 
-class S2rcpEncodeError(Exception):
+class S2rcpDecodeError(S2rcpException):
+    pass
+
+
+class S2rcpEncodeError(S2rcpException):
     pass

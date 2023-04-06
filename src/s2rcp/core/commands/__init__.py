@@ -1,11 +1,19 @@
-from .all_commands import StartCommand, StopCommand, COMMANDS_TYPES
-from .command import Command
+from .command import (
+    Command, CommandEncoder, CommandDecoder
+)
+from .all_commands import (
+    StartCommand, StopCommand,
+    get_command_by_id, get_command_type_id
+)
 
 
 __all__ = [
     "Command",
-    "COMMANDS_TYPES",
+    "CommandEncoder",
+    "CommandDecoder",
     "StartCommand",
-    "StopCommand"
+    "StopCommand",
+    "get_command_by_id",
+    "get_command_type_id",
 ]
 

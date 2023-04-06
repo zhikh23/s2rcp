@@ -54,10 +54,10 @@ class MotorsController:
 
     def _decode_recursively(self, data):
         """
-        It decodes using the S2RCP protocol, and if there is still information left after
-        decoding one container, it tries to decode the remaining information.
-        I.e. if the server sent two containers in one message (this is possible in TCP),
-        the method decodes them both
+        It decodes using the S2RCP protocol, and if there is still information
+        left after decoding one container, it tries to decode the remaining
+        information. I.e. if the server sent two containers in one message
+        (this is possible in TCP), the method decodes them both
         """
         containers = list()
         container, processed = s2rcp_decoder.decode(data)

@@ -11,7 +11,6 @@ class RemoteController:
     def __init__(self, network_client, axes_config):
         self._axes_config = axes_config
         self._client = network_client
-
         self._model = RobotModel(axes_config)
         self._buffered_model = RobotModel(axes_config)
 
