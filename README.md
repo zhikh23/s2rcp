@@ -21,9 +21,9 @@ This package includes modules:
 
 ## Installation
 
-Install from [pip](https://test.pypi.org/project/s2rcp/)
+Install from [pip](https://pypi.org/project/s2rcp/)
 ```sh
-pip install -i https://test.pypi.org/simple/ s2rcp
+pip install s2rcp
 ```
 
 ## Code example from the robot side
@@ -131,5 +131,5 @@ controller.update()
 ```
 
 ## Source code
-See [here](https://gitlab.com/zhikh/s2rcp)
+See [here](https://github.com/zhikh23/s2rcp)
 

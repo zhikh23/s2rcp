@@ -3,7 +3,7 @@ from . import robot
 from . import network
 from . import core
 
-__version__ = "0.2.12"
+__version__ = "1.0.0"
 __author__ = "zhikh"
 __all__ = [
     "core",
