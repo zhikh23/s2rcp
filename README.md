@@ -53,7 +53,7 @@ tcp_client = TcpClient()
 # ROBOT_ADDRESS - ipv4 address in the form "xxx.xxx.xxx.xxx", for example 
 # "192.168.1.10"
 # ROBOT_PORT - the port that will listen to the work, for example 53445
-# tcp_client.listen((ROBOT_ADDRESS, ROBOT_PORT))
+tcp_client.listen((ROBOT_ADDRESS, ROBOT_PORT))
 ```
 
 4. Create a controller and register your motors
