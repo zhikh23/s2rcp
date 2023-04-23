@@ -10,22 +10,33 @@ class Command(metaclass=ABCMeta):
     @staticmethod
     @abstractmethod
     def get_encoder():
-        pass
+        raise NotImplementedError(
+            """the get_encoder() method of the abstract class Command is not 
+            implemented"""
+        )
 
     @staticmethod
     @abstractmethod
     def get_decoder():
-        pass
+        raise NotImplementedError(
+            """the get_decoder() method of the abstract class Command is not 
+            implemented"""
+        ) 
 
 
 class CommandEncoder(metaclass=ABCMeta):
     @abstractmethod
     def encode(self, command):
-        pass
+        raise NotImplementedError(
+            """the encode(command) method of the abstract class CommandEncoder 
+            is not implemented"""
+        ) 
 
 
 class CommandDecoder(metaclass=ABCMeta):
     @abstractmethod
     def decode(self, data):
-        pass
-
+        raise NotImplementedError(
+            """the decode(data) method of the abstract class CommandDecoder 
+            is not implemented"""
+        ) 

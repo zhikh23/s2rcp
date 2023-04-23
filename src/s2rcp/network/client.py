@@ -15,7 +15,10 @@ class BaseClient(metaclass=ABCMeta):
 
     @abstractmethod
     def send(self, data) -> None:
-        pass   
+        raise NotImplementedError(
+            """the send(speed, inverted) method of the abstract class 
+            BaseClient is not implemented"""
+        )   
 
     def subscribe(self, event_type, handler) -> None:
         """
